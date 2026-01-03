@@ -1,0 +1,5 @@
+site_name: Blitz Broker Adapter Documentation
+
+nav:
+  - Home: index.md
+  - blitz_adapter_structure: blitz_adapter_structure.md
