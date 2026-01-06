@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>blitz_adapter_structure - Blitz Broker Adapter Documentation</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../css/brands.min.css" rel="stylesheet">
+        <link href="../css/solid.min.css" rel="stylesheet">
+        <link href="../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">Blitz Broker Adapter Documentation</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a href=".." class="nav-link">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="./" class="nav-link active" aria-current="page">blitz_adapter_structure</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ms-md-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href=".." class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" class="nav-link disabled">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="1"><a href="#blitz-order-message-structure-document" class="nav-link">Blitz Order Message Structure Document</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#1-overview" class="nav-link">1. Overview</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#2-blitz-standard-orderlog" class="nav-link">2. Blitz Standard OrderLog</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#3-message-flow-broker-adapter-blitz" class="nav-link">3. Message Flow: Broker → Adapter → Blitz</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#4-message-flow-blitz-adapter-broker" class="nav-link">4. Message Flow: Blitz → Adapter → Broker</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#5-status-mapping" class="nav-link">5. Status Mapping</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#6-timestamps" class="nav-link">6. Timestamps</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#7-notes-for-adapters" class="nav-link">7. Notes for Adapters</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="blitz-order-message-structure-document">Blitz Order Message Structure Document</h1>
+<h2 id="1-overview">1. Overview</h2>
+<p>Blitz uses a standardized <code>OrderLog</code> object to store and communicate order events, regardless of the broker. Adapter modules map broker-specific events into this standardized format.</p>
+<p>There are two main flows:</p>
+<ul>
+<li><strong>From Broker → Adapter → Blitz</strong>: Raw broker events are converted to Blitz <code>OrderLog</code>.</li>
+<li><strong>From Blitz → Adapter → Broker</strong>: Order requests from Blitz are sent to broker-specific formats via adapters.</li>
+</ul>
+<p>This document focuses on the message structure used in these flows.</p>
+<hr />
+<h2 id="2-blitz-standard-orderlog">2. Blitz Standard OrderLog</h2>
+<p>All order messages in Blitz follow this structure:</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ExchangeOrderId</td>
+<td>str</td>
+<td>Broker-provided order ID</td>
+<td>Primary key per exchange</td>
+</tr>
+<tr>
+<td>ExecutionId</td>
+<td>str</td>
+<td>Internal/execution ID</td>
+<td>Typically same as <code>order_id</code> in broker data</td>
+</tr>
+<tr>
+<td>Account</td>
+<td>str</td>
+<td>Account identifier</td>
+<td>Broker account ID</td>
+</tr>
+<tr>
+<td>InstrumentId</td>
+<td>int</td>
+<td>Unique instrument token</td>
+<td>Broker-specific numeric ID</td>
+</tr>
+<tr>
+<td>InstrumentName</td>
+<td>str</td>
+<td>Tradingsymbol</td>
+<td>e.g., RELIANCE</td>
+</tr>
+<tr>
+<td>OrderQuantity</td>
+<td>int</td>
+<td>Total order quantity</td>
+<td></td>
+</tr>
+<tr>
+<td>OrderPrice</td>
+<td>float</td>
+<td>Order price</td>
+<td></td>
+</tr>
+<tr>
+<td>OrderSide</td>
+<td>str</td>
+<td>BUY / SELL</td>
+<td>Always uppercase</td>
+</tr>
+<tr>
+<td>OrderType</td>
+<td>str</td>
+<td>LIMIT / MARKET</td>
+<td>Always uppercase</td>
+</tr>
+<tr>
+<td>OrderStatus</td>
+<td>str</td>
+<td>NEW / FILLED / CANCELLED / REJECTED</td>
+<td>Standardized across brokers</td>
+</tr>
+<tr>
+<td>LeavesQuantity</td>
+<td>int</td>
+<td>Quantity remaining to fill</td>
+<td></td>
+</tr>
+<tr>
+<td>CumulativeQuantity</td>
+<td>int</td>
+<td>Quantity already executed</td>
+<td></td>
+</tr>
+<tr>
+<td>OrderTriggerPrice</td>
+<td>float</td>
+<td>Trigger price for stop orders</td>
+<td>0 if not applicable</td>
+</tr>
+<tr>
+<td>CancelledQuantity</td>
+<td>int</td>
+<td>Quantity cancelled</td>
+<td></td>
+</tr>
+<tr>
+<td>AverageTradedPrice</td>
+<td>float</td>
+<td>Average executed price</td>
+<td>0 if not yet traded</td>
+</tr>
+<tr>
+<td>OrderGeneratedDateTime</td>
+<td>int</td>
+<td>Epoch timestamp in ms</td>
+<td>When order was generated in Blitz</td>
+</tr>
+<tr>
+<td>ExchangeTransactTime</td>
+<td>int</td>
+<td>Epoch timestamp in ms</td>
+<td>Broker execution timestamp</td>
+</tr>
+<tr>
+<td>UserText</td>
+<td>dict</td>
+<td>Raw broker JSON</td>
+<td>Reference for debugging</td>
+</tr>
+</tbody>
+</table>
+<h3 id="example-json">Example JSON</h3>
+<pre><code class="language-json">{
+  &quot;ExchangeOrderId&quot;: &quot;ABC123&quot;,
+  &quot;ExecutionId&quot;: &quot;12345&quot;,
+  &quot;Account&quot;: &quot;ACC001&quot;,
+  &quot;InstrumentId&quot;: 256265,
+  &quot;InstrumentName&quot;: &quot;RELIANCE&quot;,
+  &quot;OrderQuantity&quot;: 100,
+  &quot;OrderPrice&quot;: 2500.5,
+  &quot;OrderSide&quot;: &quot;BUY&quot;,
+  &quot;OrderType&quot;: &quot;LIMIT&quot;,
+  &quot;OrderStatus&quot;: &quot;NEW&quot;,
+  &quot;LeavesQuantity&quot;: 100,
+  &quot;CumulativeQuantity&quot;: 0,
+  &quot;OrderTriggerPrice&quot;: 0,
+  &quot;CancelledQuantity&quot;: 0,
+  &quot;AverageTradedPrice&quot;: 0,
+  &quot;OrderGeneratedDateTime&quot;: 1701638400000,
+  &quot;ExchangeTransactTime&quot;: 1701638400000,
+  &quot;UserText&quot;: {
+    &quot;exchange_order_id&quot;: &quot;ABC123&quot;,
+    &quot;order_id&quot;: &quot;12345&quot;,
+    &quot;quantity&quot;: 100,
+    &quot;price&quot;: 2500.5,
+    &quot;status&quot;: &quot;OPEN&quot;
+  }
+}
+</code></pre>
+<hr />
+<h2 id="3-message-flow-broker-adapter-blitz">3. Message Flow: Broker → Adapter → Blitz</h2>
+<p><strong>Steps:</strong></p>
+<ol>
+<li>Adapter receives raw broker order JSON.</li>
+<li>Adapter converts it into <code>OrderLog</code> using broker-specific mapping logic.</li>
+<li><code>UserText</code> stores the original broker message for reference.</li>
+<li>Blitz consumes the standardized <code>OrderLog</code>.</li>
+</ol>
+<h3 id="example-zerodha">Example (Zerodha)</h3>
+<p><strong>Broker Raw Data:</strong></p>
+<pre><code class="language-json">{
+  &quot;order_id&quot;: &quot;12345&quot;,
+  &quot;exchange_order_id&quot;: &quot;ABC123&quot;,
+  &quot;tradingsymbol&quot;: &quot;RELIANCE&quot;,
+  &quot;instrument_token&quot;: 256265,
+  &quot;quantity&quot;: 100,
+  &quot;price&quot;: 2500.5,
+  &quot;transaction_type&quot;: &quot;BUY&quot;,
+  &quot;order_type&quot;: &quot;LIMIT&quot;,
+  &quot;status&quot;: &quot;OPEN&quot;,
+  &quot;average_price&quot;: 0.0,
+  &quot;order_timestamp&quot;: &quot;2026-01-02T13:00:00&quot;,
+  &quot;exchange_timestamp&quot;: &quot;2026-01-02T13:00:00&quot;
+}
+</code></pre>
+<p><strong>Adapter → Blitz:</strong></p>
+<pre><code class="language-json">{
+  &quot;ExchangeOrderId&quot;: &quot;ABC123&quot;,
+  &quot;ExecutionId&quot;: &quot;12345&quot;,
+  &quot;OrderSide&quot;: &quot;BUY&quot;,
+  &quot;OrderType&quot;: &quot;LIMIT&quot;,
+  &quot;OrderStatus&quot;: &quot;NEW&quot;,
+  &quot;UserText&quot;: { ...original broker JSON... }
+}
+</code></pre>
+<hr />
+<h2 id="4-message-flow-blitz-adapter-broker">4. Message Flow: Blitz → Adapter → Broker</h2>
+<p>When Blitz generates an order request:</p>
+<ol>
+<li>Blitz sends an OrderLog-like request to the adapter.</li>
+<li>Adapter converts Blitz fields to broker-specific API fields.</li>
+<li>Adapter sends request to broker API.</li>
+</ol>
+<p><strong>Mapping Example (Blitz → Zerodha):</strong></p>
+<table>
+<thead>
+<tr>
+<th>Blitz Field</th>
+<th>Zerodha API Field</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>OrderSide</td>
+<td>transaction_type</td>
+</tr>
+<tr>
+<td>OrderType</td>
+<td>order_type</td>
+</tr>
+<tr>
+<td>OrderQuantity</td>
+<td>quantity</td>
+</tr>
+<tr>
+<td>OrderPrice</td>
+<td>price</td>
+</tr>
+<tr>
+<td>InstrumentId</td>
+<td>instrument_token</td>
+</tr>
+<tr>
+<td>Account</td>
+<td>account_id</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="5-status-mapping">5. Status Mapping</h2>
+<p>Blitz normalizes broker statuses:</p>
+<table>
+<thead>
+<tr>
+<th>Broker Status</th>
+<th>Blitz Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>OPEN</td>
+<td>NEW</td>
+</tr>
+<tr>
+<td>COMPLETE</td>
+<td>FILLED</td>
+</tr>
+<tr>
+<td>CANCELLED</td>
+<td>CANCELLED</td>
+</tr>
+<tr>
+<td>REJECTED</td>
+<td>REJECTED</td>
+</tr>
+</tbody>
+</table>
+<p>Other statuses pass through as-is if unrecognized.</p>
+<hr />
+<h2 id="6-timestamps">6. Timestamps</h2>
+<p>All timestamps in Blitz are stored as <strong>epoch milliseconds</strong>:</p>
+<ul>
+<li><code>OrderGeneratedDateTime</code>: Order creation time</li>
+<li><code>ExchangeTransactTime</code>: Broker execution time</li>
+</ul>
+<p>Adapter must convert ISO format strings to epoch ms.</p>
+<hr />
+<h2 id="7-notes-for-adapters">7. Notes for Adapters</h2>
+<ul>
+<li>Always populate <code>UserText</code> with raw broker JSON.</li>
+<li>OrderLog fields should be fully filled where possible.</li>
+<li>Any missing numeric field defaults to <code>0</code>.</li>
+<li>Any missing string field defaults to <code>""</code> or <code>None</code>.</li>
+</ul></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../js/bootstrap.bundle.min.js"></script>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js"></script>
+        <script src="../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

@@ -1,5 +1,30 @@
 site_name: Blitz Broker Adapter Documentation
 
+theme:
+  name: material
+  logo: assets/icon.png
+  favicon: assets/favicon.ico
+  features:
+    - navigation.sections
+    - navigation.expand
 nav:
   - Home: index.md
+  - blitz_order_request: blitz_order_requests.md
   - blitz_adapter_structure: blitz_adapter_structure.md
+
+
+extra_css:
+  - css/custom.css
+
+extra_javascript:
+  - js/logo-link.js
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.tabbed
+  - pymdownx.highlight
+  - pymdownx.emoji
+  - pymdownx.extra
+  - attr_list
