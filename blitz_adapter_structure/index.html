@@ -1,128 +1,468 @@
-<!DOCTYPE html>
-<html lang="en" data-bs-theme="light">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../blitz_order_requests/">
+      
+      
+      
         
-        
-        
-        <link rel="shortcut icon" href="../img/favicon.ico">
+      
+      
+      <link rel="icon" href="../assets/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+    
+    
+      
         <title>blitz_adapter_structure - Blitz Broker Adapter Documentation</title>
-        <link href="../css/bootstrap.min.css" rel="stylesheet">
-        <link href="../css/fontawesome.min.css" rel="stylesheet">
-        <link href="../css/brands.min.css" rel="stylesheet">
-        <link href="../css/solid.min.css" rel="stylesheet">
-        <link href="../css/v4-font-face.min.css" rel="stylesheet">
-        <link href="../css/base.css" rel="stylesheet">
-        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
-        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
-        <script>hljs.highlightAll();</script> 
-    </head>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.618322db.min.css">
+      
+      
 
-    <body>
-        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
-            <div class="container">
-                <a class="navbar-brand" href="..">Blitz Broker Adapter Documentation</a>
-                <!-- Expander button -->
-                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <!-- Expanded navigation -->
-                <div id="navbar-collapse" class="navbar-collapse collapse">
-                        <!-- Main navigation -->
-                        <ul class="nav navbar-nav">
-                            <li class="nav-item">
-                                <a href=".." class="nav-link">Home</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="./" class="nav-link active" aria-current="page">blitz_adapter_structure</a>
-                            </li>
-                        </ul>
-
-                    <ul class="nav navbar-nav ms-md-auto">
-                        <li class="nav-item">
-                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
-                                <i class="fa fa-search"></i> Search
-                            </a>
-                        </li>
-                            <li class="nav-item">
-                                <a rel="prev" href=".." class="nav-link">
-                                    <i class="fa fa-arrow-left"></i> Previous
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a rel="next" class="nav-link disabled">
-                                    Next <i class="fa fa-arrow-right"></i>
-                                </a>
-                            </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <div class="container">
-            <div class="row">
-                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
-    <div class="navbar-header">
-        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
-            <span class="fa fa-angle-down"></span>
-        </button>
-    </div>
 
     
-    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
-        <ul class="nav flex-column">
-            
-            <li class="nav-item" data-bs-level="1"><a href="#blitz-order-message-structure-document" class="nav-link">Blitz Order Message Structure Document</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="2"><a href="#1-overview" class="nav-link">1. Overview</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#2-blitz-standard-orderlog" class="nav-link">2. Blitz Standard OrderLog</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#3-message-flow-broker-adapter-blitz" class="nav-link">3. Message Flow: Broker → Adapter → Blitz</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#4-message-flow-blitz-adapter-broker" class="nav-link">4. Message Flow: Blitz → Adapter → Broker</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#5-status-mapping" class="nav-link">5. Status Mapping</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#6-timestamps" class="nav-link">6. Timestamps</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#7-notes-for-adapters" class="nav-link">7. Notes for Adapters</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-        </ul>
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../css/custom.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#blitz-order-message-structure-document" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
-</div></div>
-                    <div class="col-md-9" role="main">
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Blitz Broker Adapter Documentation" class="md-header__button md-logo" aria-label="Blitz Broker Adapter Documentation" data-md-component="logo">
+      
+  <img src="../assets/icon.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Blitz Broker Adapter Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              blitz_adapter_structure
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Blitz Broker Adapter Documentation" class="md-nav__button md-logo" aria-label="Blitz Broker Adapter Documentation" data-md-component="logo">
+      
+  <img src="../assets/icon.png" alt="logo">
+
+    </a>
+    Blitz Broker Adapter Documentation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../blitz_order_requests/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    blitz_order_request
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    blitz_adapter_structure
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    blitz_adapter_structure
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
 
 <h1 id="blitz-order-message-structure-document">Blitz Order Message Structure Document</h1>
-<h2 id="1-overview">1. Overview</h2>
+<h2 id="overview">Overview</h2>
 <p>Blitz uses a standardized <code>OrderLog</code> object to store and communicate order events, regardless of the broker. Adapter modules map broker-specific events into this standardized format.</p>
 <p>There are two main flows:</p>
 <ul>
-<li><strong>From Broker → Adapter → Blitz</strong>: Raw broker events are converted to Blitz <code>OrderLog</code>.</li>
 <li><strong>From Blitz → Adapter → Broker</strong>: Order requests from Blitz are sent to broker-specific formats via adapters.</li>
+<li><strong>From Broker → Adapter → Blitz</strong>: Raw broker events are converted to Blitz <code>OrderLog</code>.</li>
 </ul>
-<p>This document focuses on the message structure used in these flows.</p>
+<p>This  focuses on the message structure used in these flows.</p>
 <hr />
+<h1 id="blitz-adapter-broker-order-flow">Blitz → Adapter → Broker Order Flow</h1>
+<h2 id="1-order-request-blitz-redis">1. Order Request: Blitz → Redis</h2>
+<p>When Blitz wants to place an order, it creates a <strong>request payload</strong> and publishes it to Redis.</p>
+<p>The adapter subscribes to the Redis channel, receives the request, converts it into <strong>broker-specific format</strong>, and sends it to the broker.</p>
+<p>You can see the full order request structure here:<br />
+<a href="../blitz_order_requests/">Blitz Order Request Details</a></p>
+<div class="admonition notes">
+<p class="admonition-title">Notes</p>
+<p><code>request_id</code> must be unique for each request.
+Mandatory fields include <code>InstrumentId</code>, <code>Account</code>, <code>OrderType</code>, <code>OrderSide</code>, <code>OrderQuantity</code>, <code>OrderPrice</code>.
+Optional fields like <code>TIF</code>, <code>Product</code>, and <code>StopPrice</code> depend on the broker and order type.</p>
+</div>
+<hr />
+<h2 id="2-adapter-broker">2. Adapter → Broker</h2>
+<ul>
+<li>The adapter maps Blitz fields to the broker API fields (for example, Zerodha).</li>
+<li>Sends the order to the broker API.</li>
+<li>Waits for execution response.</li>
+</ul>
+<h3 id="example-mapping-blitz-zerodha">Example Mapping (Blitz → Zerodha)</h3>
+<table>
+<thead>
+<tr>
+<th>Blitz Field</th>
+<th>Zerodha Field</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>InstrumentId</td>
+<td>instrument_token</td>
+</tr>
+<tr>
+<td>Account</td>
+<td>account_id</td>
+</tr>
+<tr>
+<td>OrderType</td>
+<td>order_type</td>
+</tr>
+<tr>
+<td>OrderSide</td>
+<td>transaction_type</td>
+</tr>
+<tr>
+<td>OrderQuantity</td>
+<td>quantity</td>
+</tr>
+<tr>
+<td>OrderPrice</td>
+<td>price</td>
+</tr>
+<tr>
+<td>TIF</td>
+<td>validity</td>
+</tr>
+<tr>
+<td>Product</td>
+<td>product_type</td>
+</tr>
+<tr>
+<td>StopPrice</td>
+<td>trigger_price</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="3-broker-response-adapter-blitz">3. Broker Response → Adapter → Blitz</h2>
+<ul>
+<li>Broker responds with execution status (OPEN, FILLED, CANCELLED, REJECTED, etc.).</li>
+<li>Adapter converts broker response to Blitz <code>OrderLog</code>.</li>
+<li>Publishes the <code>OrderLog</code> back to Redis for Blitz to consume.</li>
+</ul>
 <h2 id="2-blitz-standard-orderlog">2. Blitz Standard OrderLog</h2>
 <p>All order messages in Blitz follow this structure:</p>
 <table>
@@ -136,34 +476,70 @@
 </thead>
 <tbody>
 <tr>
+<td>Id</td>
+<td>long</td>
+<td>Internal database ID</td>
+<td>Auto-generated</td>
+</tr>
+<tr>
+<td>EntityId</td>
+<td>string</td>
+<td>Entity identifier</td>
+<td>Owning organization</td>
+</tr>
+<tr>
+<td>InstrumentId</td>
+<td>ulong</td>
+<td>Blitz instrument ID</td>
+<td>Preferred for broker mapping</td>
+</tr>
+<tr>
+<td>ExchangeSegment</td>
+<td>enum</td>
+<td>Exchange segment</td>
+<td>NSE / BSE / NFO</td>
+</tr>
+<tr>
+<td>InstrumentName</td>
+<td>string</td>
+<td>Trading symbol</td>
+<td>e.g., RELIANCE</td>
+</tr>
+<tr>
+<td>BlitzOrderId</td>
+<td>ulong</td>
+<td>Blitz order ID</td>
+<td>Generated by Blitz</td>
+</tr>
+<tr>
 <td>ExchangeOrderId</td>
-<td>str</td>
+<td>string</td>
 <td>Broker-provided order ID</td>
 <td>Primary key per exchange</td>
 </tr>
 <tr>
 <td>ExecutionId</td>
-<td>str</td>
-<td>Internal/execution ID</td>
-<td>Typically same as <code>order_id</code> in broker data</td>
+<td>string</td>
+<td>Broker execution ID</td>
+<td>Often same as order_id</td>
 </tr>
 <tr>
-<td>Account</td>
-<td>str</td>
-<td>Account identifier</td>
-<td>Broker account ID</td>
+<td>OrderType</td>
+<td>enum</td>
+<td>LIMIT / MARKET / SL / SL-M</td>
+<td>Uppercase</td>
 </tr>
 <tr>
-<td>InstrumentId</td>
-<td>int</td>
-<td>Unique instrument token</td>
-<td>Broker-specific numeric ID</td>
+<td>OrderSide</td>
+<td>enum</td>
+<td>BUY / SELL</td>
+<td>Uppercase</td>
 </tr>
 <tr>
-<td>InstrumentName</td>
-<td>str</td>
-<td>Tradingsymbol</td>
-<td>e.g., RELIANCE</td>
+<td>OrderStatus</td>
+<td>enum</td>
+<td>NEW / FILLED / CANCELLED / REJECTED</td>
+<td>Normalized</td>
 </tr>
 <tr>
 <td>OrderQuantity</td>
@@ -173,106 +549,127 @@
 </tr>
 <tr>
 <td>OrderPrice</td>
-<td>float</td>
+<td>double</td>
 <td>Order price</td>
-<td></td>
+<td>Required for LIMIT</td>
 </tr>
 <tr>
-<td>OrderSide</td>
-<td>str</td>
-<td>BUY / SELL</td>
-<td>Always uppercase</td>
+<td>OrderStopPrice</td>
+<td>double</td>
+<td>Stop-loss price</td>
+<td>Optional</td>
 </tr>
 <tr>
-<td>OrderType</td>
-<td>str</td>
-<td>LIMIT / MARKET</td>
-<td>Always uppercase</td>
+<td>OrderTriggerPrice</td>
+<td>double</td>
+<td>Trigger price</td>
+<td>For SL / SL-M</td>
 </tr>
 <tr>
-<td>OrderStatus</td>
-<td>str</td>
-<td>NEW / FILLED / CANCELLED / REJECTED</td>
-<td>Standardized across brokers</td>
+<td>LastTradedQuantity</td>
+<td>int</td>
+<td>Last traded quantity</td>
+<td>Adapter-filled</td>
+</tr>
+<tr>
+<td>LastTradedPrice</td>
+<td>double</td>
+<td>Last traded price</td>
+<td>Adapter-filled</td>
 </tr>
 <tr>
 <td>LeavesQuantity</td>
 <td>int</td>
-<td>Quantity remaining to fill</td>
+<td>Quantity remaining</td>
 <td></td>
 </tr>
 <tr>
-<td>CumulativeQuantity</td>
+<td>TIF</td>
+<td>enum</td>
+<td>Time in Force</td>
+<td>DAY / IOC</td>
+</tr>
+<tr>
+<td>OrderDisclosedQuantity</td>
 <td>int</td>
-<td>Quantity already executed</td>
-<td></td>
-</tr>
-<tr>
-<td>OrderTriggerPrice</td>
-<td>float</td>
-<td>Trigger price for stop orders</td>
-<td>0 if not applicable</td>
-</tr>
-<tr>
-<td>CancelledQuantity</td>
-<td>int</td>
-<td>Quantity cancelled</td>
-<td></td>
-</tr>
-<tr>
-<td>AverageTradedPrice</td>
-<td>float</td>
-<td>Average executed price</td>
-<td>0 if not yet traded</td>
-</tr>
-<tr>
-<td>OrderGeneratedDateTime</td>
-<td>int</td>
-<td>Epoch timestamp in ms</td>
-<td>When order was generated in Blitz</td>
+<td>Disclosed quantity</td>
+<td>Optional</td>
 </tr>
 <tr>
 <td>ExchangeTransactTime</td>
-<td>int</td>
-<td>Epoch timestamp in ms</td>
-<td>Broker execution timestamp</td>
+<td>long</td>
+<td>Broker execution time</td>
+<td>Epoch ms</td>
+</tr>
+<tr>
+<td>AverageTradedPrice</td>
+<td>double</td>
+<td>Average executed price</td>
+<td>0 if none</td>
+</tr>
+<tr>
+<td>IsOrderCompleted</td>
+<td>bool</td>
+<td>Terminal order state</td>
+<td></td>
 </tr>
 <tr>
 <td>UserText</td>
-<td>dict</td>
-<td>Raw broker JSON</td>
-<td>Reference for debugging</td>
+<td>string</td>
+<td>Raw broker message</td>
+<td>JSON for debugging</td>
+</tr>
+<tr>
+<td>ExecutionType</td>
+<td>enum</td>
+<td>MANUAL / AUTO / STRATEGY</td>
+<td></td>
+</tr>
+<tr>
+<td>CorrelationOrderId</td>
+<td>string</td>
+<td>Cross-system order ID</td>
+<td>Optional</td>
 </tr>
 </tbody>
 </table>
+<h2 id="notes">Notes</h2>
+<ul>
+<li>Only a subset of fields is required for order placement</li>
+<li>Broker-generated fields must not be set by callers</li>
+<li>All timestamps are epoch milliseconds</li>
+<li><code>UserText</code> must always contain the raw broker payload</li>
+</ul>
 <h3 id="example-json">Example JSON</h3>
-<pre><code class="language-json">{
-  &quot;ExchangeOrderId&quot;: &quot;ABC123&quot;,
-  &quot;ExecutionId&quot;: &quot;12345&quot;,
-  &quot;Account&quot;: &quot;ACC001&quot;,
-  &quot;InstrumentId&quot;: 256265,
-  &quot;InstrumentName&quot;: &quot;RELIANCE&quot;,
-  &quot;OrderQuantity&quot;: 100,
-  &quot;OrderPrice&quot;: 2500.5,
-  &quot;OrderSide&quot;: &quot;BUY&quot;,
-  &quot;OrderType&quot;: &quot;LIMIT&quot;,
-  &quot;OrderStatus&quot;: &quot;NEW&quot;,
-  &quot;LeavesQuantity&quot;: 100,
-  &quot;CumulativeQuantity&quot;: 0,
-  &quot;OrderTriggerPrice&quot;: 0,
-  &quot;CancelledQuantity&quot;: 0,
-  &quot;AverageTradedPrice&quot;: 0,
-  &quot;OrderGeneratedDateTime&quot;: 1701638400000,
-  &quot;ExchangeTransactTime&quot;: 1701638400000,
-  &quot;UserText&quot;: {
-    &quot;exchange_order_id&quot;: &quot;ABC123&quot;,
-    &quot;order_id&quot;: &quot;12345&quot;,
-    &quot;quantity&quot;: 100,
-    &quot;price&quot;: 2500.5,
-    &quot;status&quot;: &quot;OPEN&quot;
-  }
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;Id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;EntityId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;InstrumentId&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">3677697</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;ExchangeSegment&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;NSE&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;InstrumentName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;IDEA&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;BlitzOrderId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;260106151469089&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;ExchangeOrderId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1100000057118816&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;ExecutionId&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;OrderType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;LIMIT&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;OrderSide&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;BUY&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;OrderStatus&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;NEW&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;OrderQuantity&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;OrderPrice&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">11.2</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;OrderStopPrice&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;OrderTriggerPrice&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;LastTradedQuantity&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;LastTradedPrice&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;LeavesQuantity&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;TIF&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;DAY&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;OrderDisclosedQuantity&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;ExchangeTransactTime&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2026-01-06 13:36:53&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;AverageTradedPrice&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;IsOrderCompleted&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;UserText&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;ExecutionType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;CorrelationOrderId&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span>
+<span class="p">}</span>
+</code></pre></div>
 <hr />
 <h2 id="3-message-flow-broker-adapter-blitz">3. Message Flow: Broker → Adapter → Blitz</h2>
 <p><strong>Steps:</strong></p>
@@ -282,33 +679,73 @@
 <li><code>UserText</code> stores the original broker message for reference.</li>
 <li>Blitz consumes the standardized <code>OrderLog</code>.</li>
 </ol>
-<h3 id="example-zerodha">Example (Zerodha)</h3>
+<h3 id="example-zerodha-response">Example (ZERODHA RESPONSE)</h3>
 <p><strong>Broker Raw Data:</strong></p>
-<pre><code class="language-json">{
-  &quot;order_id&quot;: &quot;12345&quot;,
-  &quot;exchange_order_id&quot;: &quot;ABC123&quot;,
-  &quot;tradingsymbol&quot;: &quot;RELIANCE&quot;,
-  &quot;instrument_token&quot;: 256265,
-  &quot;quantity&quot;: 100,
-  &quot;price&quot;: 2500.5,
-  &quot;transaction_type&quot;: &quot;BUY&quot;,
-  &quot;order_type&quot;: &quot;LIMIT&quot;,
-  &quot;status&quot;: &quot;OPEN&quot;,
-  &quot;average_price&quot;: 0.0,
-  &quot;order_timestamp&quot;: &quot;2026-01-02T13:00:00&quot;,
-  &quot;exchange_timestamp&quot;: &quot;2026-01-02T13:00:00&quot;
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;account_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;RGZ539&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;unfilled_quantity&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;checksum&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;placed_by&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;RGZ539&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;order_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;260106151960076&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;exchange_order_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1100000078332318&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;parent_order_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;OPEN&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;status_message&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;status_message_raw&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;order_timestamp&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2026-01-06 15:22:19&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;exchange_update_timestamp&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2026-01-06 15:22:19&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;exchange_timestamp&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2026-01-06 15:22:19&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;variety&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;regular&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;exchange&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;NSE&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;tradingsymbol&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;IDEA&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;instrument_token&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">3677697</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;order_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;LIMIT&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;transaction_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;BUY&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;validity&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;DAY&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;product&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;MIS&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;quantity&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;disclosed_quantity&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;price&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">11.2</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;trigger_price&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;average_price&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;filled_quantity&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;pending_quantity&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;cancelled_quantity&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;market_protection&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;meta&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span>
+<span class="w">  </span><span class="nt">&quot;tag&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;guid&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;205871X0NN8M6geL7A8&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
 <p><strong>Adapter → Blitz:</strong></p>
-<pre><code class="language-json">{
-  &quot;ExchangeOrderId&quot;: &quot;ABC123&quot;,
-  &quot;ExecutionId&quot;: &quot;12345&quot;,
-  &quot;OrderSide&quot;: &quot;BUY&quot;,
-  &quot;OrderType&quot;: &quot;LIMIT&quot;,
-  &quot;OrderStatus&quot;: &quot;NEW&quot;,
-  &quot;UserText&quot;: { ...original broker JSON... }
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;EntityId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;InstrumentId&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">3677697</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;ExchangeSegment&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;NSE&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;InstrumentName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;IDEA&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;BlitzOrderId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;260106151960076&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;ExchangeOrderId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1100000078332318&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;ExecutionId&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;OrderType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;LIMIT&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;OrderSide&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;BUY&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;OrderStatus&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;NEW&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;OrderQuantity&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;OrderPrice&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">11.2</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;OrderStopPrice&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;OrderTriggerPrice&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;LastTradedQuantity&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;LastTradedPrice&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;LeavesQuantity&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;TIF&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;DAY&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;OrderDisclosedQuantity&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;ExchangeTransactTime&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2026-01-06 15:22:19&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;AverageTradedPrice&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;IsOrderCompleted&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;UserText&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;ExecutionType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;CorrelationOrderId&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span>
+<span class="p">}</span>
+</code></pre></div>
 <hr />
 <h2 id="4-message-flow-blitz-adapter-broker">4. Message Flow: Blitz → Adapter → Broker</h2>
 <p>When Blitz generates an order request:</p>
@@ -397,82 +834,63 @@
 <li>OrderLog fields should be fully filled where possible.</li>
 <li>Any missing numeric field defaults to <code>0</code>.</li>
 <li>Any missing string field defaults to <code>""</code> or <code>None</code>.</li>
-</ul></div>
-            </div>
-        </div>
+</ul>
 
-        <footer class="col-md-12">
-            <hr>
-            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
-        </footer>
-        <script src="../js/bootstrap.bundle.min.js"></script>
-        <script>
-            var base_url = "..",
-                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
-        </script>
-        <script src="../js/base.js"></script>
-        <script src="../search/main.js"></script>
 
-        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title" id="searchModalLabel">Search</h4>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
             </div>
-            <div class="modal-body">
-                <p>From here you can search these documents. Enter your search terms below.</p>
-                <form>
-                    <div class="form-group">
-                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
-                    </div>
-                </form>
-                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
-            </div>
-            <div class="modal-footer">
-            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
         </div>
-    </div>
-</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th style="width: 20%;">Keys</th>
-                    <th>Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td class="help shortcut"><kbd>?</kbd></td>
-                    <td>Open this help</td>
-                  </tr>
-                  <tr>
-                    <td class="next shortcut"><kbd>n</kbd></td>
-                    <td>Next page</td>
-                  </tr>
-                  <tr>
-                    <td class="prev shortcut"><kbd>p</kbd></td>
-                    <td>Previous page</td>
-                  </tr>
-                  <tr>
-                    <td class="search shortcut"><kbd>s</kbd></td>
-                    <td>Search</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            <div class="modal-footer">
-            </div>
-        </div>
-    </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
 </div>
-
-    </body>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.sections", "navigation.expand"], "search": "../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.e71a0d61.min.js"></script>
+      
+        <script src="../js/logo-link.js"></script>
+      
+    
+  </body>
 </html>
