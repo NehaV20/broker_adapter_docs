@@ -355,6 +355,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#request_id-place_001-action-place_order-data-boid-boid123-instrumentid-23455666-exchangeinstrumentid-ex123-exchangesegment-nsecm-instrumentname-reliance-quantity-1-product-mis-tif-day-price-1560-ordertype-limit-orderside-buy-stopprice-0" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        { &quot;request_id&quot;: &quot;place_001&quot;, &quot;action&quot;: &quot;PLACE_ORDER&quot;, &quot;data&quot;: { &quot;BOID&quot;: &quot;BOID123&quot;, &quot;instrumentId&quot;: 23455666, &quot;exchangeInstrumentID&quot;: &quot;EX123&quot;, &quot;exchangeSegment&quot;: &quot;NSECM&quot;, &quot;instrumentName&quot;: &quot;RELIANCE&quot;, &quot;quantity&quot;: 1, &quot;product&quot;: &quot;MIS&quot;, &quot;tif&quot;: &quot;DAY&quot;, &quot;price&quot;: 1560, &quot;orderType&quot;: &quot;LIMIT&quot;, &quot;orderSide&quot;: &quot;BUY&quot;, &quot;stopPrice&quot;: 0 } }
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#2-modify-order" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -626,6 +637,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#request_id-place_001-action-place_order-data-boid-boid123-instrumentid-23455666-exchangeinstrumentid-ex123-exchangesegment-nsecm-instrumentname-reliance-quantity-1-product-mis-tif-day-price-1560-ordertype-limit-orderside-buy-stopprice-0" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        { &quot;request_id&quot;: &quot;place_001&quot;, &quot;action&quot;: &quot;PLACE_ORDER&quot;, &quot;data&quot;: { &quot;BOID&quot;: &quot;BOID123&quot;, &quot;instrumentId&quot;: 23455666, &quot;exchangeInstrumentID&quot;: &quot;EX123&quot;, &quot;exchangeSegment&quot;: &quot;NSECM&quot;, &quot;instrumentName&quot;: &quot;RELIANCE&quot;, &quot;quantity&quot;: 1, &quot;product&quot;: &quot;MIS&quot;, &quot;tif&quot;: &quot;DAY&quot;, &quot;price&quot;: 1560, &quot;orderType&quot;: &quot;LIMIT&quot;, &quot;orderSide&quot;: &quot;BUY&quot;, &quot;stopPrice&quot;: 0 } }
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#2-modify-order" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -863,13 +885,15 @@ requests to the Adapter (Zerodha) via Redis.</p>
 </tbody>
 </table>
 <h3 id="example">Example</h3>
-<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<h2 id="request_id-place_001-action-place_order-data-boid-boid123-instrumentid-23455666-exchangeinstrumentid-ex123-exchangesegment-nsecm-instrumentname-reliance-quantity-1-product-mis-tif-day-price-1560-ordertype-limit-orderside-buy-stopprice-0"><div class="highlight"><pre><span></span><code><span class="p">{</span>
 <span class="w">  </span><span class="nt">&quot;request_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;place_001&quot;</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">&quot;action&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;PLACE_ORDER&quot;</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="nt">&quot;BOID&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;BOID123&quot;</span><span class="p">,</span>
 <span class="w">    </span><span class="nt">&quot;instrumentId&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">23455666</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;symbol&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;NSE|RELIANCE&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;exchangeInstrumentID&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;EX123&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;exchangeSegment&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;NSECM&quot;</span><span class="p">,</span><span class="w">  </span>
+<span class="w">    </span><span class="nt">&quot;instrumentName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;RELIANCE&quot;</span><span class="p">,</span>
 <span class="w">    </span><span class="nt">&quot;quantity&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
 <span class="w">    </span><span class="nt">&quot;product&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;MIS&quot;</span><span class="p">,</span>
 <span class="w">    </span><span class="nt">&quot;tif&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;DAY&quot;</span><span class="p">,</span>
@@ -879,8 +903,7 @@ requests to the Adapter (Zerodha) via Redis.</p>
 <span class="w">    </span><span class="nt">&quot;stopPrice&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
-</code></pre></div>
-<hr />
+</code></pre></div></h2>
 <h2 id="2-modify-order">2. MODIFY ORDER</h2>
 <h3 id="action_1">Action</h3>
 <p>MODIFY_ORDER</p>
