@@ -99,20 +99,28 @@ Blitz request is published to the redis channel
 
 ```json
 {
-   "action": "PLACE_ORDER",
-    
-    "data": {
-        "BlitzOrderID": "BOID_07",
-        "ExchangeSegment" : "NSECM", 
-        "InstrumentName" : "IDEA",
-        "quantity": 1,
-        "ProductType": "MIS",
-        "tif": "DAY",
-        "price": 11.25,
-        "orderType": "LIMIT",
-        "orderSide": "BUY",
-        "stopPrice": 0,
-        "ExchangeInstrumentID": "123"
+  "action": "PLACE_ORDER",
+  "TpomsName": "Zerodha",
+  "UserID": "ABC123",
+  "Data": {
+      "Account":"Test123",
+      "ExchangeClientID": "CLIENT_01",
+      "ExchangeSegment": "NSE",
+      "ExchangeInstrumentID": 1234,
+      "ProductType": "MIS",
+      "OrderType": "LIMIT",
+      "OrderSide": "BUY",
+      "TimeInForce": "DAY",
+      "DisclosedQuantity": "10",
+      "OrderQuantity": "100",
+      "LimitPrice": 11.25,
+      "StopPrice": 11.00,
+      "BlitzAppOrderID": 4576347291,
+      "AlgoID": "MOMENTUM_V1",
+      "AlgoCategory": "INTRADAY",
+      "UserExcahngeProperty_KeyInfo2": "ADDITIONAL_INFO",
+      "UserLoginName":"harshit",
+      "IsFictiveorder": "False"
     }
 }
 ```
@@ -123,21 +131,22 @@ The request is then processed with the blitz_to_zerodha function which convert i
 
 ```json 
 {
-  "symbol": "IDEA",
+  "tradingsymbol": "IDEA",
   "exchange": "NSE",
   "transaction_type": "BUY",
   "order_type": "LIMIT",
-  "qty": 1,
+  "quantity": 100,
   "product": "MIS",
   "price": 11.25,
-  "trigger_price": 0,
+  "trigger_price": 11.00,
+  "disclosed_quantity": 10,
   "validity": "DAY"
 }
 ```
 
 After calling the zerodha API with the payload zerodha send the response in the below format
 
-**Zerodha Raw Response**
+**Zerodha Websocket Raw Response (Order status is Open)**
 
 ```json
 {
@@ -162,10 +171,10 @@ After calling the zerodha API with the payload zerodha send the response in the 
   "transaction_type": "BUY",
   "validity": "DAY",
   "product": "MIS",
-  "quantity": 1,
-  "disclosed_quantity": 0,
+  "quantity": 100,
+  "disclosed_quantity": 10,
   "price": 11.25,
-  "trigger_price": 0,
+  "trigger_price": 11.00,
   "average_price": 0,
   "filled_quantity": 0,
   "pending_quantity": 1,
@@ -258,12 +267,26 @@ The response is then processed and then converted to blitz format
 ```json
 {
   "action": "MODIFY_ORDER",
+  "UserID": "ABC123",
   "data": {
-    "BlitzOrderID": "BOID_07",
-    "quantity": 1,
-    "orderType": "LIMIT",
-    "validity": "DAY",
-    "price": 11.35
+    "Account": "",
+    "ExchangeClientID": "CLIENT_01",
+    "ExchangeSegment": "NSE",
+    "ExchangeInstrumentID": 1234,
+    "ExcahngeInstrumnetName" : "IDEA",
+    "ModifiedProductType": "NRML",
+    "ModifiedOrdertype": "SL",
+    "ModifiedTimeInForce": "IOC",
+    "ModifiedDisclosedQuantity": 10,
+    "ModifiedOrderQuantity": 150,
+    "ModifiedLimitPrice": 11.15,
+    "ModifiedStopPrice": 11.10,
+    "LeavesQuantity": 50,
+    "CumulativeQuantity": 100,
+    "LastOrderModifiedTime": "2026-01-08 15:23:46",
+    "BlitzAooOrderID": 1234567891,
+    "ExchangeOrderID": "EXCH_ORD_987654",
+    "UserLoginName": "harshit"
   }
 }
 ```
