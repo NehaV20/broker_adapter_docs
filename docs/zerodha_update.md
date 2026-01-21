@@ -211,9 +211,10 @@ The response is then processed and then converted to blitz format
 
 ```json 
 {
+  "MessageType": "PLACE_ORDER",
   "TpomsName": "Zerodha",
   "UserID": "ABC123",
-    "data": {
+    "Data": {
         "SequenceNumber": 0,
         "Account": "Test123",
         "ExchangeClientID": "CLIENT_01",
@@ -241,7 +242,7 @@ The response is then processed and then converted to blitz format
         "LastTradedQuantity": 0,
         "LastExecutionTransactTime": null,
         "ExecutionID": ""
-}
+    }
 
 }
 ```
@@ -278,15 +279,16 @@ The response is then processed and then converted to blitz format
 ```json
 {
   "action": "MODIFY_ORDER",
+  "TpomsName": "Zerodha",
   "UserID": "ABC123",
-  "data": {
+  "Data": {
     "Account": "Test123",
     "ExchangeClientID": "CLIENT_01",
     "ExchangeSegment": "NSE",
     "ExchangeInstrumentID": 1234,
     "ExcahngeInstrumnetName" : "IDEA",
     "ModifiedProductType": "NRML",
-    "ModifiedOrdertype": "SL",
+    "ModifiedOrdertype": "LIMIT",
     "ModifiedTimeInForce": "IOC",
     "ModifiedDisclosedQuantity": 10,
     "ModifiedOrderQuantity": 150,
@@ -345,7 +347,8 @@ The response is then processed and then converted to blitz format
 **Blitz Response**
 ```json
 {
-  "broker": "Zerodha",
+  "MessageType": "MODIFY_ORDER",
+  "TpomsName": "Zerodha",
   "UserID": "ABC123",
   "Data": {
         "SequenceNumber": 0,
@@ -397,7 +400,7 @@ The response is then processed and then converted to blitz format
         "ExchangeInstrumentID": 3677697,
         "SymbolName": "NIFTY",
         "ExchangeInstrumentName": "IDEA",
-        "LeavesQuantity": 250,
+        "LeavesQuantity": 150,
         "CummulativeQuantity": 50,
         "LastOrderModifiedTime": "2026-01-20 15:23:46",
         "BlitzAppOrderID": 4058284572,
@@ -433,14 +436,14 @@ The response is then processed and then converted to blitz format
   "transaction_type": "BUY",
   "validity": "DAY",
   "product": "MIS",
-  "quantity": 1,
+  "quantity": 150,
   "disclosed_quantity": 0,
   "price": 11.35,
   "trigger_price": 0,
   "average_price": 0,
   "filled_quantity": 0,
   "pending_quantity": 0,
-  "cancelled_quantity": 1,
+  "cancelled_quantity": 150,
   "market_protection": 0,
   "meta": {},
   "tag": null,
@@ -452,6 +455,7 @@ The response is then processed and then converted to blitz format
 
 ```json
 {
+  "MessageType": "CANCEL_ORDER",
   "TpomsName": "Zerodha",
   "UserID": "ABC123",
   "Data": {
@@ -467,7 +471,7 @@ The response is then processed and then converted to blitz format
         "ProductType": "MIS",
         "TimeInForce": "DAY",
         "OrderPrice": 11.35,
-        "OrderQuantity": 1,
+        "OrderQuantity": 150,
         "OrderStopPrice": 0,
         "OrderStatus": "CANCELLED",
         "OrderAverageTradedPrice": "0",
@@ -482,7 +486,7 @@ The response is then processed and then converted to blitz format
         "LastTradedQuantity": 0,
         "LastExecutionTransactTime": null,
         "ExecutionID": ""
-}
+  }
 
 }
 ```
